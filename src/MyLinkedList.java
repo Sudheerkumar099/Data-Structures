@@ -1,4 +1,5 @@
 public class MyLinkedList<T> {
+
 Node<T> head;
 Node<T> last;
 int size;
@@ -107,4 +108,51 @@ public int size() {
         return size;
     }
 
+public void addAtIndex(int index, T data) {
+        if (index < 0 || index > size) {
+            System.out.println("Invalid position");
+            return;
+        }
+        if (index == 0) {
+            addFirst(data);
+            return;
+        }
+        if (index== size) {
+            add(data);
+            return;
+        }
+        Node<T> temp = head;
+        for (int i = 0; i < index - 1; i++){
+            temp = temp.next;
+        }
+        Node<T> newNode = new Node<>(data);
+        newNode.next = temp.next;
+        newNode.previous = temp;
+        temp.next.previous = newNode;
+        temp.next = newNode;
+        size++;
+    }
+
+public T removeAtPosition(int position) {
+        if (position < 0 || position >= size) {
+            System.out.println("Invalid position");
+            return null;
+        }
+        if (position == 0) {
+            return removeFirst();
+        }
+        if (position == size - 1) {
+            return removeLast();
+        }
+        Node<T> temp = head;
+        for (int i = 0; i < position; i++) {
+            temp = temp.next;
+        }
+        T data = temp.data;
+        temp.previous.next = temp.next;
+        temp.next.previous = temp.previous;
+        size--;
+        return data;
+    }
 }
+
