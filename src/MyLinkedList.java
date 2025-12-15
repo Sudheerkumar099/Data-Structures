@@ -73,7 +73,7 @@ public class MyLinkedList<T> {
         Node<T> newNode = new Node<T>(data);
         if (isEmpty()) {
             head = newNode;
-            last=newNode;
+            last = newNode;
         } else {
             last.next = newNode;
             newNode.previous = last;
@@ -87,7 +87,6 @@ public class MyLinkedList<T> {
             System.out.println("Linked List is Empty");
             return;
         }
-
         Node<T> temp = head;
         while (temp != null) {
             System.out.print(temp.data + " ");
@@ -155,19 +154,17 @@ public class MyLinkedList<T> {
         return data;
     }
 
-    public void searchObject(T a){
-        Node<T> temp=head;
-        for(int i=0;i<size-1;i++){
-            if(temp.data==a) {
-                System.out.println(a +" Found at "+i);
+    public void searchObject(T a) {
+        Node<T> temp = head;
+        for (int i = 0; i < size - 1; i++) {
+            if (temp.data == a) {
+                System.out.println(a + " Found at " + i);
                 return;
             }
-            temp=temp.next;
-            }
-        System.out.println(a + " Not Found");
+            temp = temp.next;
         }
-
-
+        System.out.println(a + " Not Found");
+    }
 
 }
 
