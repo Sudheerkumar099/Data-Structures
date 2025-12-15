@@ -17,12 +17,12 @@ public class MyQueue<T> {
         size++;
     }
 
-    public void addfirst(T data) {
+    public void enqueue(T data) {
         size++;
         list.add(data);
     }
 
-    public void removeFirst() {
+    public void dequeue() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
             return;
