@@ -1,15 +1,17 @@
-import java.util.Date;
-
 public class MyLinkedList<T> {
 Node<T> head;
+Node<T> last;
+int size;
+
 MyLinkedList(){
     this.head=null;
+    this.last=null;
+    size=0;
 }
 
 public boolean isEmpty() {
     if(head == null){
         return true;
-    }else{
     }
     return  false;
 }
@@ -33,7 +35,9 @@ public T getLast(){
 public  void addFirst(T data){
     Node<T> newNode = new Node<T>(data);
     newNode.next=head;
+    newNode.previous=newNode;
     head =newNode;
+    size++;
 }
 
 public T removeFirst(){
@@ -43,44 +47,38 @@ public T removeFirst(){
     }
     T data = head.data;
     head = head.next;
+    head.previous=null;
+    size--;
     return data;
-
 }
 
-public T removeLast(){
-        if(isEmpty()){
+public T removeLast() {
+        if (isEmpty()) {
             System.out.println("Linked List is Empty");
             return null;
         }
-        if(head.next==null){
-            T data=head.data;
-            head=null;
-            return data;
+        T data = last.data;
+        if (head == last) {
+            head = last = null;
+        } else {
+            last = last.previous;
+            last.next = null;
         }
-
-        Node<T> temp=head;
-        while(temp.next.next!=null){
-            temp=temp.next;
-        }
-        T data = temp.next.data;
-        temp.next=null;
+        size--;
         return data;
-
-
-
     }
-    public void add(T data){
+
+public void add(T data){
     Node <T> newNode= new Node<T>(data);
     if(isEmpty()){
     head=newNode;
-    return;
     }
-
-    Node<T> temp=head;
-    while(temp.next!=null){
-        temp=temp.next;
+    else{
+       last.next=newNode;
+       newNode.previous=last;
+       last=newNode;
     }
-    temp.next=newNode;
+    size++;
 }
 
 public void display(){
@@ -94,28 +92,19 @@ public void display(){
         System.out.print(temp.data+" ");
         temp=temp.next;
     }
-
-
 }
 
-public void displayInReverse(){
-    reverseDisplayHelper(head);
-    System.out.println();
-}
-
-public void reverseDisplayHelper(Node <T> node){
-    if(node==null){
-        return;
+public void displayInReverse() {
+        Node<T> temp = last;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.previous;
+        }
+        System.out.println();
     }
-    reverseDisplayHelper(node.next);
-    System.out.print(node.data+" ");
 
-}
-
-
-
-
-
-
+public int size() {
+        return size;
+    }
 
 }
