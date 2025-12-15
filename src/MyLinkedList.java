@@ -1,59 +1,59 @@
 public class MyLinkedList<T> {
 
-Node<T> head;
-Node<T> last;
-int size;
+    Node<T> head;
+    Node<T> last;
+    int size;
 
-MyLinkedList(){
-    this.head=null;
-    this.last=null;
-    size=0;
-}
-
-public boolean isEmpty() {
-    if(head == null){
-        return true;
+    MyLinkedList() {
+        this.head = null;
+        this.last = null;
+        size = 0;
     }
-    return  false;
-}
 
-public T getFirst(){
-    if(isEmpty()){
-        System.out.println("Linked List is empty");
-        return null;
+    public boolean isEmpty() {
+        if (head == null) {
+            return true;
+        }
+        return false;
     }
-    return head.data;
-}
 
-public T getLast(){
-        Node<T> temp=head;
-        while(temp !=null){
-            temp=temp.next;
+    public T getFirst() {
+        if (isEmpty()) {
+            System.out.println("Linked List is empty");
+            return null;
+        }
+        return head.data;
+    }
+
+    public T getLast() {
+        Node<T> temp = head;
+        while (temp != null) {
+            temp = temp.next;
         }
         return temp.data;
     }
 
-public  void addFirst(T data){
-    Node<T> newNode = new Node<T>(data);
-    newNode.next=head;
-    newNode.previous=newNode;
-    head =newNode;
-    size++;
-}
-
-public T removeFirst(){
-    if(isEmpty()){
-        System.out.println("The Linked List is Empty");
-        return null;
+    public void addFirst(T data) {
+        Node<T> newNode = new Node<T>(data);
+        newNode.next = head;
+        newNode.previous = newNode;
+        head = newNode;
+        size++;
     }
-    T data = head.data;
-    head = head.next;
-    head.previous=null;
-    size--;
-    return data;
-}
 
-public T removeLast() {
+    public T removeFirst() {
+        if (isEmpty()) {
+            System.out.println("The Linked List is Empty");
+            return null;
+        }
+        T data = head.data;
+        head = head.next;
+        head.previous = null;
+        size--;
+        return data;
+    }
+
+    public T removeLast() {
         if (isEmpty()) {
             System.out.println("Linked List is Empty");
             return null;
@@ -69,33 +69,33 @@ public T removeLast() {
         return data;
     }
 
-public void add(T data){
-    Node <T> newNode= new Node<T>(data);
-    if(isEmpty()){
-    head=newNode;
-    }
-    else{
-       last.next=newNode;
-       newNode.previous=last;
-       last=newNode;
-    }
-    size++;
-}
-
-public void display(){
-    if(isEmpty()){
-        System.out.println("Linked List is Empty");
-        return;
+    public void add(T data) {
+        Node<T> newNode = new Node<T>(data);
+        if (isEmpty()) {
+            head = newNode;
+            last=newNode;
+        } else {
+            last.next = newNode;
+            newNode.previous = last;
+            last = newNode;
+        }
+        size++;
     }
 
-    Node<T> temp=head;
-    while(temp !=null){
-        System.out.print(temp.data+" ");
-        temp=temp.next;
-    }
-}
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Linked List is Empty");
+            return;
+        }
 
-public void displayInReverse() {
+        Node<T> temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+
+    public void displayInReverse() {
         Node<T> temp = last;
         while (temp != null) {
             System.out.print(temp.data + " ");
@@ -104,11 +104,11 @@ public void displayInReverse() {
         System.out.println();
     }
 
-public int size() {
+    public int size() {
         return size;
     }
 
-public void addAtIndex(int index, T data) {
+    public void addAtIndex(int index, T data) {
         if (index < 0 || index > size) {
             System.out.println("Invalid position");
             return;
@@ -117,12 +117,12 @@ public void addAtIndex(int index, T data) {
             addFirst(data);
             return;
         }
-        if (index== size) {
+        if (index == size) {
             add(data);
             return;
         }
         Node<T> temp = head;
-        for (int i = 0; i < index - 1; i++){
+        for (int i = 0; i < index - 1; i++) {
             temp = temp.next;
         }
         Node<T> newNode = new Node<>(data);
@@ -133,7 +133,7 @@ public void addAtIndex(int index, T data) {
         size++;
     }
 
-public T removeAtPosition(int position) {
+    public T removeAtPosition(int position) {
         if (position < 0 || position >= size) {
             System.out.println("Invalid position");
             return null;
@@ -154,5 +154,20 @@ public T removeAtPosition(int position) {
         size--;
         return data;
     }
+
+    public void searchObject(T a){
+        Node<T> temp=head;
+        for(int i=0;i<size-1;i++){
+            if(temp.data==a) {
+                System.out.println(a +" Found at "+i);
+                return;
+            }
+            temp=temp.next;
+            }
+        System.out.println(a + " Not Found");
+        }
+
+
+
 }
 

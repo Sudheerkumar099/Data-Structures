@@ -1,23 +1,24 @@
-public class MyStack <T>{
-    private MyLinkedList<T> list ;
+public class MyStack<T> {
+
+    private MyLinkedList<T> list;
     int size;
 
-    MyStack(){
-        list= new MyLinkedList<T>();
-        size=0;
+    MyStack() {
+        list = new MyLinkedList<T>();
+        size = 0;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return list.isEmpty();
     }
 
-    public void push(T data){
+    public void push(T data) {
         list.addFirst(data);
         size++;
     }
 
-    public T pop(){
-        if(list.isEmpty()){
+    public T pop() {
+        if (list.isEmpty()) {
             System.out.println("MyStack is empty");
             return null;
         }
@@ -26,22 +27,19 @@ public class MyStack <T>{
 
     }
 
-    public T peek(){
-        if(list.isEmpty()){
+    public T peek() {
+        if (list.isEmpty()) {
             System.out.println("MyStack is empty");
             return null;
         }
         return list.getFirst();
     }
 
-    public void display(){
+    public void display() {
         list.display();
     }
 
-
-    int size(){
+    int size() {
         return size;
     }
-
-
 }
